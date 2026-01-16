@@ -4,31 +4,39 @@
     box-sizing: border-box;
 }
 
-/* Light and Dark Mode Variables */
+/* macOS Tahoe Liquid Glass UI Theme */
 :root {
-    --bg-sky: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
-    --bg-ground: #9FD99D;
-    --text-color: #2C3E50;
-    --header-bg: rgba(255, 255, 255, 0.95);
-    --content-bg: rgba(255, 255, 255, 0.95);
-    --accent-color: #FFB84D;
-    --accent-hover: #FFD700;
+    /* Light mode - Tahoe */
+    --bg-sky: linear-gradient(180deg, #F6F6F6 0%, #FFFFFF 100%);
+    --text-color: #000000;
+    --text-secondary: #666666;
+    --header-bg: rgba(255, 255, 255, 0.6);
+    --content-bg: rgba(255, 255, 255, 0.4);
+    --accent-color: #FF9500;
+    --accent-hover: #FFB833;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --card-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-sky: linear-gradient(180deg, #0B1F3F 0%, #1a2744 100%);
-        --bg-ground: #1a3a1a;
-        --text-color: #E0E0E0;
-        --header-bg: rgba(30, 30, 40, 0.95);
-        --content-bg: rgba(40, 40, 50, 0.95);
-        --accent-color: #9FD99D;
-        --accent-hover: #b3e6b0;
+        /* Dark mode - Tahoe */
+        --bg-sky: linear-gradient(180deg, #0C0C0F 0%, #1A1A1D 100%);
+        --text-color: #FFFFFF;
+        --text-secondary: #B0B0B0;
+        --header-bg: rgba(20, 20, 30, 0.7);
+        --content-bg: rgba(25, 25, 35, 0.5);
+        --accent-color: #A78BFA;
+        --accent-hover: #C4B5FD;
+        --border-color: rgba(255, 255, 255, 0.08);
+        --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        --glass-border: rgba(255, 255, 255, 0.15);
     }
 }
 
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Trebuchet MS', sans-serif;
     background: var(--bg-sky);
     min-height: 100vh;
     color: var(--text-color);
@@ -36,204 +44,102 @@ body {
     position: relative;
 }
 
-body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-    background: var(--bg-sky);
-    min-height: 100vh;
-    color: var(--text-color);
-    overflow-x: hidden;
-    position: relative;
-}
-
-/* Bottom Sun/Moon Container */
-.sun-moon-bottom {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 300px;
-    z-index: 5;
-    pointer-events: none;
-}
-
-#celestial {
-    width: 100%;
-    height: 100%;
-    filter: drop-shadow(0 -10px 40px rgba(255, 215, 0, 0.5));
-    animation: gentle-float 6s ease-in-out infinite;
-}
-
-@keyframes gentle-float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    #celestial {
-        filter: drop-shadow(0 -10px 40px rgba(200, 200, 220, 0.6));
-    }
-}
-
-/* Eye blink animation - shrink from top and bottom to middle */
-@keyframes blink-eye {
-    0%, 100% {
-        transform: scaleY(1);
-        opacity: 1;
-    }
-    45%, 55% {
-        transform: scaleY(0.05);
-        opacity: 0.8;
-    }
-}
-
-#eyes line {
-    animation: blink-eye 4s ease-in-out infinite;
-}
-
-#eyes circle {
-    animation: blink-eye 4s ease-in-out infinite;
-}
-
-/* Speech Bubble */
-.speech-bubble {
-    position: absolute;
-    top: 80px;
-    right: -120px;
-    background: white;
-    color: #2C3E50;
-    padding: 15px 22px;
-    border-radius: 25px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
-    font-size: 15px;
-    white-space: nowrap;
-    animation: fadeInBounce 0.8s ease-out;
-}
-
-.speech-bubble::before {
-    content: '';
-    position: absolute;
-    left: -12px;
-    top: 25px;
-    width: 0;
-    height: 0;
-    border-top: 12px solid transparent;
-    border-bottom: 12px solid transparent;
-    border-right: 12px solid white;
-}
-
-.speech-bubble p {
-    margin: 0;
-    font-size: 14px;
-}
-
-@keyframes fadeInBounce {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px) scale(0.9);
-    }
-    60% {
-        opacity: 1;
-        transform: translateY(5px) scale(1.05);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* Header Styles */
+/* Header Styles - Tahoe Liquid Glass Menu */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 3rem;
+    padding: 1.2rem 2.5rem;
     background: var(--header-bg);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--card-shadow);
     position: relative;
     z-index: 100;
+    border-radius: 0 0 12px 12px;
 }
 
 .logo a {
-    font-size: 1.8rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--accent-color);
     text-decoration: none;
     transition: all 0.3s ease;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo a:hover {
     color: var(--accent-hover);
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 nav {
     display: flex;
-    gap: 2rem;
+    gap: 0.5rem;
 }
 
 nav a {
     text-decoration: none;
     color: var(--text-color);
-    font-weight: 600;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 10px;
+    transition: all 0.25s ease;
     position: relative;
+    background: transparent;
 }
 
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 3px;
-    background: var(--accent-color);
-    transition: width 0.3s ease;
-}
-
-nav a:hover::after,
-nav a.active::after {
-    width: 80%;
-}
-
-nav a:hover,
-nav a.active {
+nav a:hover {
     color: var(--accent-color);
+    background: rgba(255, 149, 0, 0.1);
+}
+
+nav a.active {
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+}
+
+@media (prefers-color-scheme: dark) {
+    nav a:hover {
+        background: rgba(167, 139, 250, 0.15);
+    }
+    
+    nav a.active {
+        background: rgba(100, 100, 120, 0.3);
+    }
 }
 
 /* Main Content */
 main {
     position: relative;
     min-height: calc(100vh - 320px);
-    padding: 3rem;
+    padding: 3rem 2.5rem;
     padding-bottom: 100px;
 }
 
 .content {
-    max-width: 800px;
-    margin: 2rem auto;
+    max-width: 900px;
+    margin: 2.5rem auto;
     background: var(--content-bg);
-    padding: 3rem;
+    padding: 3.5rem;
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--card-shadow);
     position: relative;
     z-index: 10;
-    animation: fadeIn 0.8s ease-out;
+    animation: fadeIn 0.6s ease-out;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px);
     }
     to {
         opacity: 1;
@@ -242,64 +148,70 @@ main {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: var(--text-color);
     margin-bottom: 1rem;
     text-align: center;
+    font-weight: 700;
 }
 
 .subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--accent-color);
     text-align: center;
-    margin-bottom: 2rem;
-    font-weight: 600;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
 }
 
 p {
     line-height: 1.8;
-    font-size: 1.1rem;
-    color: var(--text-color);
-    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.2rem;
 }
 
 /* Projects Page */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
 .project-card {
-    background: var(--accent-color);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, rgba(255, 149, 0, 0.15) 0%, rgba(255, 149, 0, 0.05) 100%);
+    padding: 2.5rem;
+    border-radius: 16px;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    box-shadow: var(--card-shadow);
     transition: all 0.3s ease;
-    color: white;
+    color: var(--text-color);
+    border: 1px solid var(--glass-border);
 }
 
 @media (prefers-color-scheme: dark) {
     .project-card {
-        background: linear-gradient(135deg, #2a5a2a 0%, #1a4a1a 100%);
+        background: linear-gradient(135deg, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%);
     }
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    border-color: var(--accent-color);
 }
 
 .project-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
-    color: #FFE066;
+    color: var(--accent-color);
+    font-weight: 600;
 }
 
 .project-card p {
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
 }
 
 /* About Page */
@@ -308,11 +220,12 @@ p {
 }
 
 .about-section h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: var(--accent-color);
     margin-bottom: 1rem;
-    border-bottom: 3px solid var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
     padding-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .values-list {
@@ -324,30 +237,41 @@ p {
     padding: 0.8rem 0;
     padding-left: 2rem;
     position: relative;
-    font-size: 1.1rem;
-    color: var(--text-color);
+    font-size: 1rem;
+    color: var(--text-secondary);
 }
 
 .values-list li::before {
-    content: '☀️';
+    content: '✓';
     position: absolute;
     left: 0;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    font-weight: bold;
 }
 
 .values-list strong {
-    color: var(--accent-color);
+    color: var(--text-color);
+    font-weight: 600;
 }
 
-/* Footer Styles */
+/* Footer Styles - Tahoe Liquid Glass */
 footer {
     position: relative;
-    background: linear-gradient(135deg, #FFB84D 0%, #FFA500 50%, #FFD700 100%);
-    padding: 2rem 3rem;
-    padding-bottom: 320px;
+    background: linear-gradient(135deg, rgba(255, 149, 0, 0.2) 0%, rgba(255, 149, 0, 0.1) 100%);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    padding: 2.5rem 3rem;
     text-align: center;
     z-index: 2;
-    border-top: 5px solid #FF8C00;
+    border-top: 1px solid var(--glass-border);
+    box-shadow: var(--card-shadow);
+}
+
+@media (prefers-color-scheme: dark) {
+    footer {
+        background: linear-gradient(135deg, rgba(167, 139, 250, 0.15) 0%, rgba(167, 139, 250, 0.08) 100%);
+    }
 }
 
 .footer-content {
@@ -356,52 +280,49 @@ footer {
 }
 
 .footer-content p {
-    color: #2C3E50;
+    color: var(--text-color);
     margin: 0.5rem 0;
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .footer-tagline {
     font-style: italic;
-    opacity: 0.9;
+    opacity: 0.85;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
-        gap: 1rem;
-        padding: 1rem;
+        gap: 1.5rem;
+        padding: 1rem 1.5rem;
     }
 
     nav {
-        gap: 1rem;
+        gap: 0.5rem;
+    }
+
+    nav a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
     }
 
     .content {
-        padding: 2rem;
+        padding: 1.5rem;
         margin: 1rem;
     }
 
     h1 {
-        font-size: 2rem;
-    }
-
-    .sun-moon-bottom {
-        width: 400px;
-        height: 200px;
-    }
-
-    .speech-bubble {
-        right: -60px;
-        top: 50px;
-        font-size: 11px;
-        padding: 8px 12px;
+        font-size: 1.8rem;
     }
 
     footer {
         padding: 1.5rem 1rem;
         padding-bottom: 220px;
+    }
+
+    .footer-content p {
+        font-size: 0.85rem;
     }
 }
