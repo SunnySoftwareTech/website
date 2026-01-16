@@ -7,6 +7,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Anchored Sun/Moon Container -->
+    <div class="sun-moon-container">
+        <svg id="celestial" viewBox="0 0 400 200">
+            <!-- Semi-circle Sun/Moon -->
+            <defs>
+                <clipPath id="semicircle">
+                    <rect x="0" y="100" width="400" height="100"/>
+                </clipPath>
+                <radialGradient id="sunGradient">
+                    <stop offset="0%" style="stop-color:#FFE066;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#FFB84D;stop-opacity:1" />
+                </radialGradient>
+                <radialGradient id="moonGradient">
+                    <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#c0c0c0;stop-opacity:1" />
+                </radialGradient>
+            </defs>
+            
+            <!-- The body (semi-circle) -->
+            <circle id="celestial-body" cx="200" cy="200" r="120" fill="url(#sunGradient)" clip-path="url(#semicircle)"/>
+            
+            <!-- Moon craters (hidden by default) -->
+            <g id="craters" style="display: none;">
+                <circle cx="180" cy="130" r="15" fill="#b0b0b0" opacity="0.6"/>
+                <circle cx="230" cy="145" r="20" fill="#b0b0b0" opacity="0.5"/>
+                <circle cx="210" cy="170" r="12" fill="#b0b0b0" opacity="0.7"/>
+            </g>
+            
+            <!-- Eyes that follow mouse -->
+            <g id="eyes">
+                <!-- Left eye -->
+                <ellipse cx="160" cy="140" rx="15" ry="20" fill="#2C3E50"/>
+                <circle id="left-pupil" cx="160" cy="140" r="8" fill="#000000"/>
+                <circle cx="165" cy="136" r="4" fill="#FFFFFF"/>
+                
+                <!-- Right eye -->
+                <ellipse cx="240" cy="140" rx="15" ry="20" fill="#2C3E50"/>
+                <circle id="right-pupil" cx="240" cy="140" r="8" fill="#000000"/>
+                <circle cx="245" cy="136" r="4" fill="#FFFFFF"/>
+            </g>
+            
+            <!-- Mouth -->
+            <path id="mouth" d="M 160 170 Q 200 190 240 170" stroke="#2C3E50" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </svg>
+        
+        <!-- Speech bubble for dark mode -->
+        <div id="speech-bubble" class="speech-bubble" style="display: none;">
+            <p>ooh looks like you have dark mode turned on</p>
+        </div>
+    </div>
+
     <header>
         <div class="logo">
             <a href="index.html">SunnytechSoftware</a>
@@ -19,44 +70,6 @@
     </header>
 
     <main>
-        <div class="sun-container">
-            <svg id="sun" viewBox="0 0 200 200">
-                <!-- Sun rays -->
-                <g id="rays">
-                    <line x1="100" y1="20" x2="100" y2="0" stroke="#FFB84D" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="150" y1="30" x2="164" y2="16" stroke="#FFB84D" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="180" y1="100" x2="200" y2="100" stroke="#FFB84D" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="170" y1="150" x2="186" y2="164" stroke="#FFB84D" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="100" y1="180" x2="100" y2="200" stroke="#FFB84D" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="30" y1="170" x2="16" y2="186" stroke="#FFB84D" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="20" y1="100" x2="0" y2="100" stroke="#FFB84D" stroke-width="4" stroke-linecap="round"/>
-                    <line x1="30" y1="50" x2="14" y2="36" stroke="#FFB84D" stroke-width="4" stroke-linecap="round"/>
-                </g>
-                
-                <!-- Sun body -->
-                <circle cx="100" cy="100" r="60" fill="#FFD700"/>
-                <circle cx="100" cy="100" r="60" fill="url(#sunGradient)"/>
-                
-                <!-- Eyes -->
-                <g id="eyes">
-                    <ellipse cx="80" cy="90" rx="8" ry="12" fill="#2C3E50"/>
-                    <ellipse cx="120" cy="90" rx="8" ry="12" fill="#2C3E50"/>
-                    <circle cx="82" cy="88" r="3" fill="#FFFFFF"/>
-                    <circle cx="122" cy="88" r="3" fill="#FFFFFF"/>
-                </g>
-                
-                <!-- Mouth -->
-                <path id="mouth" d="M 75 110 Q 100 125 125 110" stroke="#2C3E50" stroke-width="4" fill="none" stroke-linecap="round"/>
-                
-                <!-- Gradient definition -->
-                <defs>
-                    <radialGradient id="sunGradient">
-                        <stop offset="0%" style="stop-color:#FFE066;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#FFB84D;stop-opacity:1" />
-                    </radialGradient>
-                </defs>
-            </svg>
-        </div>
 
         <div class="content">
             <h1>Welcome to SunnytechSoftware</h1>
@@ -64,6 +77,13 @@
             <p>We create innovative and delightful software experiences that brighten your day. Our team is dedicated to building tools and applications that make technology more accessible and enjoyable for everyone.</p>
         </div>
     </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 SunnytechSoftware. All rights reserved.</p>
+            <p class="footer-tagline">Brightening the world, one line of code at a time ☀️</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
