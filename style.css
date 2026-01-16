@@ -45,53 +45,71 @@ body {
     position: relative;
 }
 
-/* Ground/Footer Base */
-body::after {
-    content: '';
+/* Bottom Sun/Moon Container */
+.sun-moon-bottom {
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: var(--bg-ground);
-    z-index: 1;
-}
-
-/* Anchored Sun/Moon Container */
-.sun-moon-container {
-    position: fixed;
-    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 400px;
-    height: 200px;
-    z-index: 1000;
+    width: 600px;
+    height: 300px;
+    z-index: 5;
     pointer-events: none;
 }
 
 #celestial {
     width: 100%;
     height: 100%;
-    filter: drop-shadow(0 5px 20px rgba(255, 215, 0, 0.3));
+    filter: drop-shadow(0 -10px 40px rgba(255, 215, 0, 0.5));
+    animation: gentle-float 6s ease-in-out infinite;
+}
+
+@keyframes gentle-float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
 @media (prefers-color-scheme: dark) {
     #celestial {
-        filter: drop-shadow(0 5px 20px rgba(200, 200, 220, 0.4));
+        filter: drop-shadow(0 -10px 40px rgba(200, 200, 220, 0.6));
     }
+}
+
+/* Eye blink animation - shrink from top and bottom to middle */
+@keyframes blink-eye {
+    0%, 100% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+    45%, 55% {
+        transform: scaleY(0.05);
+        opacity: 0.8;
+    }
+}
+
+#eyes line {
+    animation: blink-eye 4s ease-in-out infinite;
+}
+
+#eyes circle {
+    animation: blink-eye 4s ease-in-out infinite;
 }
 
 /* Speech Bubble */
 .speech-bubble {
     position: absolute;
-    top: 140px;
-    right: -100px;
+    top: 80px;
+    right: -120px;
     background: white;
     color: #2C3E50;
-    padding: 12px 18px;
-    border-radius: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    font-size: 14px;
+    padding: 15px 22px;
+    border-radius: 25px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+    font-size: 15px;
     white-space: nowrap;
     animation: fadeInBounce 0.8s ease-out;
 }
@@ -99,32 +117,32 @@ body::after {
 .speech-bubble::before {
     content: '';
     position: absolute;
-    left: -10px;
-    top: 20px;
+    left: -12px;
+    top: 25px;
     width: 0;
     height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid white;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 12px solid white;
 }
 
 .speech-bubble p {
     margin: 0;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 @keyframes fadeInBounce {
     0% {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-10px) scale(0.9);
     }
     60% {
         opacity: 1;
-        transform: translateY(5px);
+        transform: translateY(5px) scale(1.05);
     }
     100% {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -138,7 +156,6 @@ header {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 100;
-    margin-top: 150px;
 }
 
 .logo a {
@@ -325,11 +342,12 @@ p {
 /* Footer Styles */
 footer {
     position: relative;
-    background: var(--bg-ground);
+    background: linear-gradient(135deg, #FFB84D 0%, #FFA500 50%, #FFD700 100%);
     padding: 2rem 3rem;
+    padding-bottom: 320px;
     text-align: center;
-    z-index: 10;
-    border-top: 4px solid var(--accent-color);
+    z-index: 2;
+    border-top: 5px solid #FF8C00;
 }
 
 .footer-content {
@@ -338,14 +356,15 @@ footer {
 }
 
 .footer-content p {
-    color: var(--text-color);
+    color: #2C3E50;
     margin: 0.5rem 0;
     font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .footer-tagline {
     font-style: italic;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 /* Responsive Design */
@@ -354,7 +373,6 @@ footer {
         flex-direction: column;
         gap: 1rem;
         padding: 1rem;
-        margin-top: 120px;
     }
 
     nav {
@@ -370,19 +388,20 @@ footer {
         font-size: 2rem;
     }
 
-    .sun-moon-container {
-        width: 300px;
-        height: 150px;
+    .sun-moon-bottom {
+        width: 400px;
+        height: 200px;
     }
 
     .speech-bubble {
-        right: -80px;
-        top: 110px;
+        right: -60px;
+        top: 50px;
         font-size: 11px;
         padding: 8px 12px;
     }
 
     footer {
         padding: 1.5rem 1rem;
+        padding-bottom: 220px;
     }
 }

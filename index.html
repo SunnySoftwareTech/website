@@ -7,57 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Anchored Sun/Moon Container -->
-    <div class="sun-moon-container">
-        <svg id="celestial" viewBox="0 0 400 200">
-            <!-- Semi-circle Sun/Moon -->
-            <defs>
-                <clipPath id="semicircle">
-                    <rect x="0" y="100" width="400" height="100"/>
-                </clipPath>
-                <radialGradient id="sunGradient">
-                    <stop offset="0%" style="stop-color:#FFE066;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#FFB84D;stop-opacity:1" />
-                </radialGradient>
-                <radialGradient id="moonGradient">
-                    <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#c0c0c0;stop-opacity:1" />
-                </radialGradient>
-            </defs>
-            
-            <!-- The body (semi-circle) -->
-            <circle id="celestial-body" cx="200" cy="200" r="120" fill="url(#sunGradient)" clip-path="url(#semicircle)"/>
-            
-            <!-- Moon craters (hidden by default) -->
-            <g id="craters" style="display: none;">
-                <circle cx="180" cy="130" r="15" fill="#b0b0b0" opacity="0.6"/>
-                <circle cx="230" cy="145" r="20" fill="#b0b0b0" opacity="0.5"/>
-                <circle cx="210" cy="170" r="12" fill="#b0b0b0" opacity="0.7"/>
-            </g>
-            
-            <!-- Eyes that follow mouse -->
-            <g id="eyes">
-                <!-- Left eye -->
-                <ellipse cx="160" cy="140" rx="15" ry="20" fill="#2C3E50"/>
-                <circle id="left-pupil" cx="160" cy="140" r="8" fill="#000000"/>
-                <circle cx="165" cy="136" r="4" fill="#FFFFFF"/>
-                
-                <!-- Right eye -->
-                <ellipse cx="240" cy="140" rx="15" ry="20" fill="#2C3E50"/>
-                <circle id="right-pupil" cx="240" cy="140" r="8" fill="#000000"/>
-                <circle cx="245" cy="136" r="4" fill="#FFFFFF"/>
-            </g>
-            
-            <!-- Mouth -->
-            <path id="mouth" d="M 160 170 Q 200 190 240 170" stroke="#2C3E50" stroke-width="5" fill="none" stroke-linecap="round"/>
-        </svg>
-        
-        <!-- Speech bubble for dark mode -->
-        <div id="speech-bubble" class="speech-bubble" style="display: none;">
-            <p>ooh looks like you have dark mode turned on</p>
-        </div>
-    </div>
-
     <header>
         <div class="logo">
             <a href="index.html">SunnytechSoftware</a>
@@ -77,6 +26,57 @@
             <p>We create innovative and delightful software experiences that brighten your day. Our team is dedicated to building tools and applications that make technology more accessible and enjoyable for everyone.</p>
         </div>
     </main>
+
+    <!-- Bottom Sun/Moon Container -->
+    <div class="sun-moon-bottom">
+        <svg id="celestial" viewBox="0 0 600 300">
+            <defs>
+                <clipPath id="semicircle">
+                    <rect x="0" y="0" width="600" height="300"/>
+                </clipPath>
+                <radialGradient id="sunGradient">
+                    <stop offset="0%" style="stop-color:#FFE066;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#FFB84D;stop-opacity:1" />
+                </radialGradient>
+                <radialGradient id="moonGradient">
+                    <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#c0c0c0;stop-opacity:1" />
+                </radialGradient>
+            </defs>
+            
+            <!-- The body (semi-circle at bottom) -->
+            <circle id="celestial-body" cx="300" cy="300" r="180" fill="url(#sunGradient)" clip-path="url(#semicircle)"/>
+            
+            <!-- Moon craters (hidden by default) -->
+            <g id="craters" style="display: none;">
+                <circle cx="260" cy="160" r="20" fill="#b0b0b0" opacity="0.6"/>
+                <circle cx="340" cy="180" r="28" fill="#b0b0b0" opacity="0.5"/>
+                <circle cx="310" cy="220" r="18" fill="#b0b0b0" opacity="0.7"/>
+                <circle cx="270" cy="240" r="15" fill="#b0b0b0" opacity="0.6"/>
+            </g>
+            
+            <!-- Eyes that follow mouse - black lines with circles -->
+            <g id="eyes">
+                <!-- Left eye -->
+                <line id="left-eye-line" x1="240" y1="150" x2="240" y2="200" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+                <circle id="left-top-circle" cx="240" cy="150" r="12" fill="#000000"/>
+                <circle id="left-bottom-circle" cx="240" cy="200" r="12" fill="#000000"/>
+                
+                <!-- Right eye -->
+                <line id="right-eye-line" x1="360" y1="150" x2="360" y2="200" stroke="#000000" stroke-width="8" stroke-linecap="round"/>
+                <circle id="right-top-circle" cx="360" cy="150" r="12" fill="#000000"/>
+                <circle id="right-bottom-circle" cx="360" cy="200" r="12" fill="#000000"/>
+            </g>
+            
+            <!-- Mouth -->
+            <path id="mouth" d="M 240 240 Q 300 270 360 240" stroke="#2C3E50" stroke-width="7" fill="none" stroke-linecap="round"/>
+        </svg>
+        
+        <!-- Speech bubble for dark mode -->
+        <div id="speech-bubble" class="speech-bubble" style="display: none;">
+            <p>ooh looks like you have dark mode turned on</p>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-content">

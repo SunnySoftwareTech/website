@@ -18,7 +18,7 @@ function detectDarkMode() {
     }
 }
 
-// Eye tracking - make pupils follow mouse
+// Eye tracking - make line eyes rotate to follow mouse
 let mouseX = 0;
 let mouseY = 0;
 
@@ -29,43 +29,48 @@ document.addEventListener('mousemove', (e) => {
 });
 
 function updateEyes() {
-    const leftPupil = document.getElementById('left-pupil');
-    const rightPupil = document.getElementById('right-pupil');
+    const leftLine = document.getElementById('left-eye-line');
+    const leftTop = document.getElementById('left-top-circle');
+    const leftBottom = document.getElementById('left-bottom-circle');
+    const rightLine = document.getElementById('right-eye-line');
+    const rightTop = document.getElementById('right-top-circle');
+    const rightBottom = document.getElementById('right-bottom-circle');
     
-    if (!leftPupil || !rightPupil) return;
+    if (!leftLine || !rightLine) return;
     
     // Get the sun/moon container position
-    const container = document.querySelector('.sun-moon-container');
+    const container = document.querySelector('.sun-moon-bottom');
     if (!container) return;
     
     const containerRect = container.getBoundingClientRect();
     
     // Left eye position (center of left eye in SVG coordinates)
-    const leftEyeX = containerRect.left + (160 / 400) * containerRect.width;
-    const leftEyeY = containerRect.top + (140 / 200) * containerRect.height;
+    const leftEyeX = containerRect.left + (240 / 600) * containerRect.width;
+    const leftEyeY = containerRect.top + (175 / 300) * containerRect.height;
     
     // Right eye position
-    const rightEyeX = containerRect.left + (240 / 400) * containerRect.width;
-    const rightEyeY = containerRect.top + (140 / 200) * containerRect.height;
+    const rightEyeX = containerRect.left + (360 / 600) * containerRect.width;
+    const rightEyeY = containerRect.top + (175 / 300) * containerRect.height;
     
-    // Calculate angle and distance for left pupil
+    // Calculate angle for left eye
     const leftAngle = Math.atan2(mouseY - leftEyeY, mouseX - leftEyeX);
-    const leftMaxMove = 5; // Maximum movement in SVG units
-    const leftMoveX = Math.cos(leftAngle) * leftMaxMove;
-    const leftMoveY = Math.sin(leftAngle) * leftMaxMove;
+    const leftRotation = leftAngle * (180 / Math.PI) + 90; // Convert to degrees and adjust
     
-    // Calculate angle and distance for right pupil
+    // Calculate angle for right eye
     const rightAngle = Math.atan2(mouseY - rightEyeY, mouseX - rightEyeX);
-    const rightMaxMove = 5;
-    const rightMoveX = Math.cos(rightAngle) * rightMaxMove;
-    const rightMoveY = Math.sin(rightAngle) * rightMaxMove;
+    const rightRotation = rightAngle * (180 / Math.PI) + 90;
     
-    // Update pupil positions
-    leftPupil.setAttribute('cx', 160 + leftMoveX);
-    leftPupil.setAttribute('cy', 140 + leftMoveY);
+    // Apply rotation to left eye elements around center point (240, 175)
+    const leftEyeCenter = '240 175';
+    leftLine.setAttribute('transform', `rotate(${leftRotation} ${leftEyeCenter})`);
+    leftTop.setAttribute('transform', `rotate(${leftRotation} ${leftEyeCenter})`);
+    leftBottom.setAttribute('transform', `rotate(${leftRotation} ${leftEyeCenter})`);
     
-    rightPupil.setAttribute('cx', 240 + rightMoveX);
-    rightPupil.setAttribute('cy', 140 + rightMoveY);
+    // Apply rotation to right eye elements around center point (360, 175)
+    const rightEyeCenter = '360 175';
+    rightLine.setAttribute('transform', `rotate(${rightRotation} ${rightEyeCenter})`);
+    rightTop.setAttribute('transform', `rotate(${rightRotation} ${rightEyeCenter})`);
+    rightBottom.setAttribute('transform', `rotate(${rightRotation} ${rightEyeCenter})`);
 }
 
 // Initialize on page load
@@ -76,26 +81,5 @@ window.addEventListener('load', () => {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', detectDarkMode);
 });
 
-// Add blinking animation
-function blink() {
-    const eyes = document.getElementById('eyes');
-    if (!eyes) return;
-    
-    eyes.style.transition = 'transform 0.1s';
-    eyes.style.transform = 'scaleY(0.1)';
-    
-    setTimeout(() => {
-        eyes.style.transform = 'scaleY(1)';
-    }, 150);
-}
-
-// Random blink every 3-7 seconds
-function scheduleNextBlink() {
-    const delay = 3000 + Math.random() * 4000;
-    setTimeout(() => {
-        blink();
-        scheduleNextBlink();
-    }, delay);
-}
-
-scheduleNextBlink();
+// Blinking is now handled by CSS animation
+// Eyes blink automatically with the animation defined in CSS
